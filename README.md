@@ -21,4 +21,4 @@ Additionally, to run the experiments with the MNIST dataset it is necessary to f
 Some path and device specific parameters has to be set before running the code. Those are all directly included into the experiments scripts. Namely the variables to be updated are:
 - gp_training_opts.data_folder : path to the directory in which the MNIST dataset is locally stored (used only for MNIST analysis).
 - result_folder: path to the directory in which results of the analyses will be stored.
-- var_comp_opts.vl_setup_script_path: path to the vl_feat toolbox. 
+- upper_bound_comp_opts.vl_setup_script_path (and var_comp_opts.vl_setup_script_path): path to the vl_feat toolbox. Used only for analysis on the MNIST dataset. 
