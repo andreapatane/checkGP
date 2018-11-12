@@ -1,0 +1,46 @@
+function [c_lb,c_ub,phi_m] = get_lb_and_ub_in_current_region(mode,upper_bound_comp_opts,mult_coefficients,c_x_l,...
+    c_x_u,training_data,outputIdx,testPoint,r_star,R,phi_m_star)
+%getting lower and upper bounds in the current region. The fucntion is
+%basically just a wrapper, getting into account the various modes and
+%kernels used.
+
+if strcmp(upper_bound_comp_opts.kernel,'ReLU')
+    [c_x_l,c_x_u] = compute_angle_space_hyper_rectangle(c_x_l,c_x_u);
+end
+
+phi_m = [];
+if strcmp(mode,'mu')
+    if strcmp(upper_bound_comp_opts.kernel,'sqe')
+        
+        [c_lb,c_ub] = compute_lower_bound_mu_sqe(mult_coefficients,c_x_l,c_x_u,...
+            upper_bound_comp_opts.kernel_params.theta_vec,upper_bound_comp_opts.kernel_params.sigma,...
+            training_data.cartesian,outputIdx,0,testPoint.cartesian);
+        
+    elseif strcmp(upper_bound_comp_opts.kernel,'ReLU')
+        [c_lb,c_ub,phi_m] = compute_lower_bound_mu_ReLU(mult_coefficients,c_x_l,c_x_u,...
+            upper_bound_comp_opts.kernel_params.sigma_b_2,upper_bound_comp_opts.kernel_params.sigma_w_2,training_data.spherical,outputIdx,...
+            testPoint.spherical,phi_m_star,training_data.cartesian,upper_bound_comp_opts.kernel_params.depth);
+    end
+elseif strcmp(mode,'xi')
+    if strcmp(upper_bound_comp_opts.kernel,'sqe')
+        [c_lb,c_ub] = compute_lower_bound_xi_sqe(mult_coefficients,c_x_l,c_x_u,...
+            upper_bound_comp_opts.kernel_params.theta_vec,upper_bound_comp_opts.kernel_params.sigma,...
+            training_data.cartesian,outputIdx,0,testPoint.cartesian,r_star,R,upper_bound_comp_opts.output_mode);
+    elseif strcmp(upper_bound_comp_opts.kernel,'ReLU')
+        [c_lb,c_ub,phi_m] = compute_lower_bound_xi_ReLU(mult_coefficients,c_x_l,c_x_u,...
+            upper_bound_comp_opts.kernel_params.sigma_b_2,upper_bound_comp_opts.kernel_params.sigma_w_2,...
+            training_data.spherical,training_data.cartesian,...
+            testPoint.spherical,testPoint.cartesian,r_star,phi_m_star,upper_bound_comp_opts.kernel_params.depth);
+    end
+elseif strcmp(mode,'sigma')
+    if strcmp(upper_bound_comp_opts.kernel,'sqe')
+        [c_lb,c_ub] = compute_lower_bound_sigma_sqe(mult_coefficients,c_x_l,c_x_u,...
+            upper_bound_comp_opts.kernel_params.theta_vec,upper_bound_comp_opts.kernel_params.sigma,...
+            training_data.cartesian,outputIdx,0,testPoint.cartesian,R);
+    elseif strcmp(upper_bound_comp_opts.kernel,'ReLU')
+        [c_lb,c_ub,phi_m] = compute_lower_bound_sigma_ReLU(mult_coefficients,c_x_l,c_x_u,...
+            upper_bound_comp_opts.kernel_params.sigma_b_2,upper_bound_comp_opts.kernel_params.sigma_w_2,...
+            training_data.spherical,training_data.cartesian,phi_m_star,upper_bound_comp_opts.kernel_params.depth);
+    end
+    
+end
