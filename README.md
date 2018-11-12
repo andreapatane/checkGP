@@ -18,8 +18,7 @@ Additionally, to run the experiments with the MNIST dataset it is necessary to f
 - "y_test.csv": [or similar name] MNIST testing set labels (10000x1 matrix)
 
 ## Settings
-Some path and device specific parameters has to be set before running the code. Those are all included intp the m-files into utils/pc_utils/ subdirectory. Namely:
-- get_data_folder(): this function has to return as output the directory in which the mnist dataset is locally stored.
-- get_num_of_threads(): output of the function is the maximum number of concurrent threads for solving linear systems.
-- get_result_folder(): the function output will be the directory in which results of the analyses will be stored
-- setup_vlfeat(): runs the setup of the vl_feat toolbox. 
+Some path and device specific parameters has to be set before running the code. Those are all directly included into the experiments scripts. Namely the variables to be updated are:
+- gp_training_opts.data_folder : path to the directory in which the MNIST dataset is locally stored (used only for MNIST analysis).
+- result_folder: path to the directory in which results of the analyses will be stored.
+- var_comp_opts.vl_setup_script_path: path to the vl_feat toolbox. 
