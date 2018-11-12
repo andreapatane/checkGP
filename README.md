@@ -1,5 +1,5 @@
 # checkGP
-Matlab implementation of the methods described in [Robustness Guarantees for Bayesian Inference with Gaussian Processes](https://arxiv.org/abs/1809.06452).
+Matlab implementation of the methods described in [Robustness Guarantees for Bayesian Inference with Gaussian Processes](https://arxiv.org/abs/1809.06452). Here we provide custom code for GP training in Matlab, and all the scripts and functions used to obtain the plots included in the paper.
 
 ## Requirements
 The main requirement for running the code is of course a:
