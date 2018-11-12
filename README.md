@@ -11,11 +11,11 @@ Additional toolbox may be required depending on the use:
 - The [vlfeat toolbox](http://www.vlfeat.org/install-matlab.html) is used for automatic feature extraction using SIFT. This is used in the experiments on the MNIST dataset.
 - The [Random Field Simulation toolbox](https://uk.mathworks.com/matlabcentral/fileexchange/27613-random-field-simulation) is used for efficient sampling from Gaussian Process. This is used to obtain empirical safety and invariance estimation. In the paper this is used only for comparison with the formal method proposed. 
 
-Additionally, to run the experiments with the MNIST dataset it is necessary to first download the dataset. The code expect the training data to be stored into the following .csv files:
-- "x_train2000.csv": a subsample of 2000 images among all the ones included in the MNIST training dataset. Data are assumed to be organised a 2000x784 matrix.
-- "y_train2000.csv": labels for the images included in the file above. That is a 2000x1 matrix of integer values between 0 and 9.
-- "x_test.csv": MNIST testing set (10000x784 matrix)
-- "y_test.csv": MNIST testing set labels (10000x1 matrix)
+Additionally, to run the experiments with the MNIST dataset it is necessary to first download the dataset. The code expect the training data to be stored into .csv files of the following form:
+- "x_train.csv": [or similar name] a subsample of N images among all the ones included in the MNIST training dataset. Data are assumed to be organised as a Nx784 matrix.
+- "y_train.csv": [or similar name] labels for the images included in the file above. That is a Nx1 matrix of integer values between 0 and 9.
+- "x_test.csv": [or similar name] MNIST testing set (10000x784 matrix)
+- "y_test.csv": [or similar name] MNIST testing set labels (10000x1 matrix)
 
 ## Settings
 Some path and device specific parameters has to be set before running the code. Those are all included intp the m-files into utils/pc_utils/ subdirectory. Namely:
