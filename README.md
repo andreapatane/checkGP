@@ -1,5 +1,5 @@
 # checkGP
-Matlab implementation for providing "Robustness guarantees for Gaussian Process".
+Matlab implementation of the methods described in [Robustness Guarantees for Bayesian Inference with Gaussian Processes](https://arxiv.org/abs/1809.06452).
 
 ## Requirements
 The main requirement for running the code is of course a:
@@ -17,7 +17,7 @@ To run the experiments with the MNIST dataset it is necessary to first download 
 - "y_test.csv": MNIST testing set labels (10000x1 matrix)
 
 ## Settings
-Some path and device specific parameters has to be set before running the code. Those are all included in m-files into utils/pc_utils/. Namely:
+Some path and device specific parameters has to be set before running the code. Those are all included intp the m-files into utils/pc_utils/ subdirectory. Namely:
 - get_data_folder(): this function has to return as output the directory in which the mnist dataset is locally stored.
 - get_num_of_threads(): output of the function is the maximum number of concurrent threads for solving linear systems.
 - get_result_folder(): the function output will be the directory in which results of the analyses will be stored
